@@ -110,27 +110,29 @@ class Main {
     //     }
     // }
 
-    static String reverse(String str){
-        StringBuilder str1 = new StringBuilder();
-        str1.append(str);
-        str1.reverse();
-        return str1.toString();
-    }
-
-    public static long gcd(long a, long b){
-        if(b == 0) return a;
-        return gcd(b, a%b);
-    }
-
     public static void solve() throws Exception {
         int n = in.nextInt();
-        int[] arr = new int[n];
-        for(int i = 0; i < n; ++i) arr[i] = in.nextInt();
-        for(int i = 0; i < n; ++i) if(arr[i] == 1) arr[i]++;
-        for(int i = 0; i < n-1; ++i){
-            if(arr[i+1] % arr[i] == 0) arr[i+1]++;
+        String str = in.next();
+        
+        HashMap<Character, Integer> map = new HashMap<>();
+        for(int i = 0; i < n; ++i){
+            char ch = str.charAt(i);
+            map.put(ch, map.getOrDefault(ch, 0) + 1);
         }
-        for(int i = 0; i < n; ++i) out.print(arr[i] + " ");
-        out.println("");
+
+        HashMap<Character, Integer> map1 = new HashMap<>();
+        int ans = map.size();
+
+        for(int i = 0; i < n; ++i){
+            char ch = str.charAt(i);
+            map1.put(ch, map.getOrDefault(ch, 0) + 1);
+
+            map.put(ch, map.getOrDefault(ch, 0) - 1);
+            if(map.get(ch) == 0) map.remove(ch);
+
+            ans = Math.max(ans, map.size() + map1.size());
+        }
+
+        out.println(ans);
     }
 }

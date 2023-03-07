@@ -98,39 +98,59 @@ class Main {
         }
 
     }
-    // static class Pair {
-    //     int x, y;
+    static class Pair {
+        int x, y;
 
-    //     Pair(int first, int second) {
-    //         this.x = first;
-    //         this.y = second;
-    //     }
+        Pair(int first, int second) {
+            this.x = first;
+            this.y = second;
+        }
 
-    //     Pair() {
-    //     }
-    // }
-
-    static String reverse(String str){
-        StringBuilder str1 = new StringBuilder();
-        str1.append(str);
-        str1.reverse();
-        return str1.toString();
-    }
-
-    public static long gcd(long a, long b){
-        if(b == 0) return a;
-        return gcd(b, a%b);
+        Pair() {
+        }
     }
 
     public static void solve() throws Exception {
         int n = in.nextInt();
         int[] arr = new int[n];
         for(int i = 0; i < n; ++i) arr[i] = in.nextInt();
-        for(int i = 0; i < n; ++i) if(arr[i] == 1) arr[i]++;
-        for(int i = 0; i < n-1; ++i){
-            if(arr[i+1] % arr[i] == 0) arr[i+1]++;
+
+        int oddCount = 0;
+        int evenCount = 0;
+
+        for(int i = 0; i < n; ++i){
+            if(arr[i] % 2 == 0) evenCount++;
+            else oddCount++;
         }
-        for(int i = 0; i < n; ++i) out.print(arr[i] + " ");
-        out.println("");
+
+        int i = -1;
+        int j = -1;
+        int k = -1;
+        if(oddCount >= 3){
+            for(int x = 0; x < n; ++x){
+                if(i == -1 && arr[x]%2 != 0){
+                    i = x+1;
+                }else if(j == -1 && arr[x]%2 != 0){
+                    j = x+1;
+                }else if(k == -1 && arr[x]%2 != 0){
+                    k = x+1;
+                }
+            }
+        }else if(oddCount >= 1 && evenCount >= 2){
+            for(int x = 0; x < n; ++x){
+                if(i == -1 && arr[x]%2 != 0){
+                    i = x+1;
+                }else if(j == -1 && arr[x]%2 == 0){
+                    j = x+1;
+                }else if(k == -1 && arr[x]%2 == 0){
+                    k = x+1;
+                }
+            }
+        }else{
+            out.println("NO");
+            return;
+        }
+        out.println("YES");
+        out.println(i + " " + j + " " + k);
     }
 }

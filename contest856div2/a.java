@@ -124,13 +124,32 @@ class Main {
 
     public static void solve() throws Exception {
         int n = in.nextInt();
-        int[] arr = new int[n];
-        for(int i = 0; i < n; ++i) arr[i] = in.nextInt();
-        for(int i = 0; i < n; ++i) if(arr[i] == 1) arr[i]++;
-        for(int i = 0; i < n-1; ++i){
-            if(arr[i+1] % arr[i] == 0) arr[i+1]++;
+        String[] arr = new String[2*n-2];
+
+        for(int i = 0; i < arr.length; ++i){
+            arr[i] = in.next();
         }
-        for(int i = 0; i < n; ++i) out.print(arr[i] + " ");
-        out.println("");
+
+        String first = "";
+        for(int i = 0; i < arr.length; ++i){
+            if(first.length() == 0 && arr[i].length() == n-1){
+                first += arr[i];
+                continue;
+            }
+            if(first.length() != 0 && arr[i].length() == n-1){
+                String second = reverse(arr[i]);
+                if(second.equals(first)){
+                    // out.print(first + " - ");
+                    // out.println(second);
+                    out.println("YES");
+                    return;
+                }else{
+                    // out.print(first + " - ");
+                    // out.println(second);
+                    out.println("NO");
+                    return;
+                }
+            }
+        }
     }
 }

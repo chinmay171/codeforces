@@ -110,27 +110,33 @@ class Main {
     //     }
     // }
 
-    static String reverse(String str){
-        StringBuilder str1 = new StringBuilder();
-        str1.append(str);
-        str1.reverse();
-        return str1.toString();
-    }
-
     public static long gcd(long a, long b){
         if(b == 0) return a;
         return gcd(b, a%b);
     }
 
+    // public static void reverse(String s){
+    //     int i = 0;
+    //     int j = s.length()-1;
+
+    //     while(i <= j){
+    //         char temp = s.charAt(i);
+    //         s.charAt(i) = s.charAt(j);
+    //         s.charAt(j) = temp;
+    //     }
+    // }
+
     public static void solve() throws Exception {
-        int n = in.nextInt();
-        int[] arr = new int[n];
-        for(int i = 0; i < n; ++i) arr[i] = in.nextInt();
-        for(int i = 0; i < n; ++i) if(arr[i] == 1) arr[i]++;
-        for(int i = 0; i < n-1; ++i){
-            if(arr[i+1] % arr[i] == 0) arr[i+1]++;
+        Long n = in.nextLong();
+        String str = in.next();
+
+        String sample = "FBFFBFFBFBFFBFFBFBFFBFFB";
+
+        int res = sample.indexOf(str);
+        if(res == -1){
+            out.println("NO");
+        }else{
+            out.println("YES");
         }
-        for(int i = 0; i < n; ++i) out.print(arr[i] + " ");
-        out.println("");
     }
 }

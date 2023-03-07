@@ -98,39 +98,31 @@ class Main {
         }
 
     }
-    // static class Pair {
-    //     int x, y;
+    static class Pair {
+        int x, y;
 
-    //     Pair(int first, int second) {
-    //         this.x = first;
-    //         this.y = second;
-    //     }
+        Pair(int first, int second) {
+            this.x = first;
+            this.y = second;
+        }
 
-    //     Pair() {
-    //     }
-    // }
-
-    static String reverse(String str){
-        StringBuilder str1 = new StringBuilder();
-        str1.append(str);
-        str1.reverse();
-        return str1.toString();
-    }
-
-    public static long gcd(long a, long b){
-        if(b == 0) return a;
-        return gcd(b, a%b);
+        Pair() {
+        }
     }
 
     public static void solve() throws Exception {
         int n = in.nextInt();
         int[] arr = new int[n];
         for(int i = 0; i < n; ++i) arr[i] = in.nextInt();
-        for(int i = 0; i < n; ++i) if(arr[i] == 1) arr[i]++;
-        for(int i = 0; i < n-1; ++i){
-            if(arr[i+1] % arr[i] == 0) arr[i+1]++;
+
+        int count = 0;
+        for(int i = 0; i <  n; ++i){
+            if(arr[i] == 1) count++;
         }
-        for(int i = 0; i < n; ++i) out.print(arr[i] + " ");
-        out.println("");
+
+        int ans = (count / 2) + n - count;
+        if(count % 2 == 1) ans++;
+  
+        out.println(ans);
     }
 }

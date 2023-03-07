@@ -110,27 +110,91 @@ class Main {
     //     }
     // }
 
-    static String reverse(String str){
-        StringBuilder str1 = new StringBuilder();
-        str1.append(str);
-        str1.reverse();
-        return str1.toString();
-    }
-
     public static long gcd(long a, long b){
         if(b == 0) return a;
         return gcd(b, a%b);
     }
 
+    // public static void reverse(String s){
+    //     int i = 0;
+    //     int j = s.length()-1;
+
+    //     while(i <= j){
+    //         char temp = s.charAt(i);
+    //         s.charAt(i) = s.charAt(j);
+    //         s.charAt(j) = temp;
+    //     }
+    // }
+
+    // public static boolean minorT(String a, String b, String t){
+    //     if(t.length() == 1){
+    //         if(a.charAt(0) == b.charAt(0) == t.charAt(0)){
+
+    //         }
+    //     }
+    // }
+
     public static void solve() throws Exception {
-        int n = in.nextInt();
-        int[] arr = new int[n];
-        for(int i = 0; i < n; ++i) arr[i] = in.nextInt();
-        for(int i = 0; i < n; ++i) if(arr[i] == 1) arr[i]++;
-        for(int i = 0; i < n-1; ++i){
-            if(arr[i+1] % arr[i] == 0) arr[i+1]++;
+        String a = in.next();
+        String b = in.next();
+
+        if(a.equals(b) == true){
+            out.println("YES");
+            out.println(a);
+            return;
         }
-        for(int i = 0; i < n; ++i) out.print(arr[i] + " ");
-        out.println("");
+
+        if(a.charAt(0) == b.charAt(0)){
+            out.println("YES");
+            out.println(a.charAt(0) + "*");
+            return;
+        }else if(a.charAt(a.length()-1) == b.charAt(b.length()-1)){
+            out.println("YES");
+            out.println("*" + a.charAt(a.length()-1));
+            return;
+        }else{
+            for(int i = 0; i < a.length()-1; ++i){
+                for(int j = 0; j < b.length()-1; ++j){
+                    if(a.charAt(i) == b.charAt(j) && a.charAt(i+1) == b.charAt(j+1)){
+                        out.println("YES");
+                        out.println("*" + a.charAt(i) + a.charAt(i+1) + "*");
+                        return;
+                    }
+                }
+            }
+            out.println("NO");
+        }
+
+        // String t = "";
+
+        // boolean isCommon = false;
+        // for(int  i = 0; i < a.length(); ++i){
+        //     for(int j = 0;  j < b.length(); ++j){
+        //         while(i < a.length() && j < b.length() && a.charAt(i) == b.charAt(j)){
+        //             t = t + a.charAt(i);
+        //             isCommon = true;
+        //             i++;
+        //             j++;
+        //         }
+        //         if(isCommon == true){
+        //             if(t.length() == 1){
+        //                 if(i == 1 && j == 1){
+        //                     out.println("YES");
+        //                     out.println(t + "*");
+        //                 }else if(i == a.length() && j == b.length()){
+        //                     out.println("YES");
+        //                     out.println("*" + t);
+        //                 }else{
+        //                     out.println("NO");
+        //                 }
+        //             }else{
+        //                 out.println("YES");
+        //                 out.println("*" + t + "*");
+        //             }
+        //             return;
+        //         }
+        //     }
+        // }
+        // out.println("NO");
     }
 }

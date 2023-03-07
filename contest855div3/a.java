@@ -110,27 +110,47 @@ class Main {
     //     }
     // }
 
-    static String reverse(String str){
-        StringBuilder str1 = new StringBuilder();
-        str1.append(str);
-        str1.reverse();
-        return str1.toString();
-    }
-
     public static long gcd(long a, long b){
         if(b == 0) return a;
         return gcd(b, a%b);
     }
 
     public static void solve() throws Exception {
-        int n = in.nextInt();
-        int[] arr = new int[n];
-        for(int i = 0; i < n; ++i) arr[i] = in.nextInt();
-        for(int i = 0; i < n; ++i) if(arr[i] == 1) arr[i]++;
-        for(int i = 0; i < n-1; ++i){
-            if(arr[i+1] % arr[i] == 0) arr[i+1]++;
+        int t = in.nextInt();
+        String str = in.next();
+
+        int i = 0;
+        int count = 0;
+        boolean checkM = false;
+        boolean checkE = false;
+        boolean checkO = false;
+        boolean checkW = false;
+        
+        while(i < str.length() && (str.charAt(i) == 'm' || str.charAt(i) == 'M')){
+            i++;
+            count++;
+            checkM = true;
         }
-        for(int i = 0; i < n; ++i) out.print(arr[i] + " ");
-        out.println("");
+        while(i < str.length() && (str.charAt(i) == 'e' || str.charAt(i) == 'E')){
+            i++;
+            count++;
+            checkE = true;
+        }
+        while(i < str.length() && (str.charAt(i) == 'o' || str.charAt(i) == 'O')){
+            i++;
+            count++;
+            checkO = true;
+        }
+        while(i < str.length() && (str.charAt(i) == 'w' || str.charAt(i) == 'W')){
+            i++;
+            count++;
+            checkW = true;
+        }
+
+        if(count == str.length() && checkM == true && checkE == true&& checkO == true&& checkW == true){
+            out.println("YES");
+        }else{
+            out.println("NO");
+        }
     }
 }

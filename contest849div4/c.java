@@ -110,27 +110,26 @@ class Main {
     //     }
     // }
 
-    static String reverse(String str){
-        StringBuilder str1 = new StringBuilder();
-        str1.append(str);
-        str1.reverse();
-        return str1.toString();
-    }
-
-    public static long gcd(long a, long b){
-        if(b == 0) return a;
-        return gcd(b, a%b);
-    }
-
     public static void solve() throws Exception {
         int n = in.nextInt();
-        int[] arr = new int[n];
-        for(int i = 0; i < n; ++i) arr[i] = in.nextInt();
-        for(int i = 0; i < n; ++i) if(arr[i] == 1) arr[i]++;
-        for(int i = 0; i < n-1; ++i){
-            if(arr[i+1] % arr[i] == 0) arr[i+1]++;
+        String str = in.next();
+        
+        int i = 0;
+        int j = n-1;
+
+        int ans = 0;
+        while(i <= j){
+            if((str.charAt(i) == '0' && str.charAt(j) == '1') ||
+               (str.charAt(i) == '1' && str.charAt(j) == '0')){
+                i++;
+                j--;
+                continue;
+            }else{
+                ans = j-i+1;
+                break;
+            }
         }
-        for(int i = 0; i < n; ++i) out.print(arr[i] + " ");
-        out.println("");
+
+        out.println(ans);
     }
 }
